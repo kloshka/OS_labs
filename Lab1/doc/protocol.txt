@@ -1,0 +1,15 @@
+PS C:\Users\klosh\Desktop\OS\build>
+.\ParentProcess.exe ..\test\test_input.txt
+Enter the name of the file: ..\test\test_input.txt
+Sum: 7.00
+Sum: 9.10
+Sum: 11.00
+Sum: 8.10
+Sum: 18.00
+PS C:\Users\klosh\Desktop\OS\build> ctest
+>>
+Test project C:/Users/klosh/Desktop/OS/build
+Start 1: MyTests
+1/1 Test #1: MyTests .......................... Passed 0.12 sec
+100% tests passed, 0 tests failed out of 1
+Total Test time (real) = 0.17 sec
