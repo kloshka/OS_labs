@@ -7,7 +7,7 @@ project(DistributedSystem)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Добавляем флаги компиляции (по желанию)
+# Добавляем флаги компиляции 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pthread")
 
 # Указываем исходные файлы
@@ -16,7 +16,7 @@ set(SOURCES
     worker.cpp
 )
 
-# Заголовочные файлы (необязательно, но полезно)
+# Заголовочные файлы
 set(HEADERS
     node.h
     net_func.h
