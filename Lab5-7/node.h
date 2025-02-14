@@ -70,36 +70,28 @@ public:
     }
 
     std::string Send(std::string str, int _id) {
-        if (children.size() == 0) {
-            return "Error: now find";
-        } else if (children.find(_id) != children.end()) {
+        if (_id == id) {
+            return "Ok: 1";
+        }
+        if (children.find(_id) != children.end()) {
             if (Ping_child(_id) == "Ok: 1") {
                 my_net::send_message(children[_id], str);
-                std::string ans;
                 try {
-                    ans = my_net::reseave(children[_id]);
+                    return my_net::reseave(children[_id]);
                 } catch (int) {
-                    ans = "Error: now find";
-                }
-                return ans;
-            }
-        } else {
-            std::string ans = "Error: not find";
-            for (auto &child: children) {
-                if (Ping_child(child.first) == "Ok: 1") {
-                    std::string msg = "send " + std::to_string(_id) + " " + str;
-                    my_net::send_message(children[child.first], msg);
-                    try {
-                        msg = my_net::reseave(children[child.first]);
-                    } catch (int) {
-                        msg = "Error: not find";
-                    }
-                    if (msg != "Error: not find") {
-                        ans = msg;
-                    }
+                    return "Error: not find";
                 }
             }
-            return ans;
+        }
+        for (auto &child : children) {
+            std::string msg = "send " + std::to_string(_id) + " " + str;
+            my_net::send_message(children[child.first], msg);
+            try {
+                std::string response = my_net::reseave(children[child.first]);
+                if (response != "Error: not find") {
+                    return response;
+                }
+            } catch (int) {}
         }
         return "Error: not find";
     }
